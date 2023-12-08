@@ -58,7 +58,8 @@
       if (count >= 5){
         message.textContent = `You Failed! 答案是 ${targetNumber}`;
         message.style.color = "red";
-        guessSubmit.disabled = true;
+        guessSubmit.disabled = true; // 猜五次後 猜！ 按鈕不能按
+        autoReplay();
     }
     }
     function showanswer(){
@@ -66,10 +67,13 @@
         message.style.color = "red";
     }
     function playagain(){
-        message.textContent = "";
-        count = 0;
-        targetNumber = Math.floor(Math.random() * 100) + 1;
-        guessSubmit.disabled = false;
+        message.textContent = ""; // 清空出現的訊息
+        count = 0; // 重置猜測次數
+        targetNumber = Math.floor(Math.random() * 100) + 1; //重新產製亂數答案
+        guessSubmit.disabled = false; // 讓 猜！ 按鈕重新可以被按
+    }
+    function autoReplay(){
+        setTimeout(playagain , 5000); // 5秒後自動接關
     }
     
   </script>
