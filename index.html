@@ -9,12 +9,17 @@
     <p>1 到 100 之間的數字，你猜是多少？</p>
     <input type="text" id="guessField" />
     <input type="submit" value="猜!" id="guessSubmit" />
+    <br>
+    <button style="color: darkred;" onclick="showanswer()">揭曉答案</button>
+    <br>
+    <br>
+    <button style="background-color: lawngreen;" onclick="playagain()">再玩一次</button>
     <p class="message"></p>
   </body>
   <script>
     let count = 0;
     // Random number
-    const targetNumber = Math.floor(Math.random() * 100) + 1;
+    let targetNumber = Math.floor(Math.random() * 100) + 1;
     console.log("answer: " + targetNumber);
 
     // Get element
@@ -49,9 +54,23 @@
 
       guessField.value = "";
       guessField.focus();
+
+      if (count >= 5){
+        message.textContent = `You Failed! 答案是 ${targetNumber}`;
+        message.style.color = "red";
+        guessSubmit.disabled = true;
     }
-    //function addcount() {
-    //  count += 1;
-    //}
+    }
+    function showanswer(){
+        message.textContent =`正確答案是：${targetNumber}`;
+        message.style.color = "red";
+    }
+    function playagain(){
+        message.textContent = "";
+        count = 0;
+        targetNumber = Math.floor(Math.random() * 100) + 1;
+        guessSubmit.disabled = false;
+    }
+    
   </script>
 </html>
