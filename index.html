@@ -15,6 +15,7 @@
     <br>
     <button style="background-color: lawngreen;" onclick="playagain()">再玩一次</button>
     <p class="message"></p>
+    <p id = "second"></p>
   </body>
   <script>
     let count = 0;
@@ -74,7 +75,28 @@
     }
     function autoReplay(){
         setTimeout(playagain , 5000); // 5秒後自動接關
+        countdown();
     }
+    function delayedDisplay(string, ms, callback){
+        setTimeout(() => {
+            callback(string);
+        }, ms);
+    }
+    function display(result) {
+        document.getElementById("second").innerText = result;
+    }
+    function countdown(){
+        delayedDisplay("5秒後開始新的一局", 0, display);
+        delayedDisplay("4秒後開始新的一局", 1000, display);
+        delayedDisplay("3秒後開始新的一局", 2000, display);
+        delayedDisplay("2秒後開始新的一局", 3000, display);
+        delayedDisplay("1秒後開始新的一局", 4000, display);
+        delayedDisplay("0", 5000, clearSecond);
+    }
+    function clearSecond() {
+    document.getElementById("second").innerText = ''; // 清空 second 元素
+    }
+
     
   </script>
 </html>
